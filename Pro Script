@@ -1,1016 +1,366 @@
 -- Jeff=pro
 
 
-
-
 local ScreenGui = Instance.new("ScreenGui")
-
-
 local main = Instance.new("Frame")
-
-
 local label = Instance.new("TextLabel")
-
-
 local Frame = Instance.new("Frame")
-
-
 local Frame_2 = Instance.new("Frame")
-
-
 local label2 = Instance.new("TextLabel")
-
-
 local SilentAim = Instance.new("TextButton")
-
-
 local FakeMacro = Instance.new("TextButton")
-
-
 local esp = Instance.new("TextButton")
-
-
 local Chatlogs = Instance.new("TextButton")
-
-
 local Raycodex = Instance.new("TextButton")
-
-
 local Swagmode = Instance.new("TextButton")
-
-
 local label3 = Instance.new("TextLabel")
-
-
 local Frame_3 = Instance.new("Frame")
-
-
 
 --Properties:
 
-
-
 ScreenGui.Parent = game.CoreGui
-
-
 main.Name = "main"
-
-
 main.Parent = ScreenGui
-
-
 main.BackgroundColor3 = Color3.fromRGB(91, 69, 69)
-
-
 main.Position = UDim2.new(0.352923036, 0, 0.250501007, 0)
-
-
 main.Size = UDim2.new(0, 376, 0, 202)
-
-
 main.Active = true
-
-
 main.Draggable = true
 
-
-
 label.Name = "label"
-
-
 label.Parent = main
-
-
 label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-
-
 label.BackgroundTransparency = 1.000
-
-
 label.BorderColor3 = Color3.fromRGB(0, 0, 0)
-
-
 label.BorderSizePixel = 0
-
-
 label.Size = UDim2.new(0, 367, 0, 32)
-
-
 label.Font = Enum.Font.SciFi
-
-
 label.Text = "Jeff's pro gui"
-
-
 label.TextColor3 = Color3.fromRGB(0, 0, 0)
-
-
 label.TextSize = 20.000
-
-
 label.TextStrokeTransparency = 0.690
-
-
 label.TextWrapped = true
 
-
-
 Frame.Parent = label
-
-
 Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-
-
 Frame.BackgroundTransparency = 0.850
-
-
 Frame.BorderSizePixel = 3
-
-
 Frame.Position = UDim2.new(0.0260853786, 0, 0.125, 0)
-
-
 Frame.Size = UDim2.new(0, 357, 0, 28)
 
-
-
 Frame_2.Parent = label
-
-
 Frame_2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-
-
 Frame_2.BackgroundTransparency = 0.600
-
-
 Frame_2.BorderSizePixel = 2
-
-
 Frame_2.Position = UDim2.new(0.0260853786, 0, 1.34375, 0)
-
-
 Frame_2.Size = UDim2.new(0, 230, 0, 147)
 
-
-
 label2.Name = "label2"
-
-
 label2.Parent = label
-
-
 label2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-
-
 label2.BackgroundTransparency = 1.000
-
-
 label2.Position = UDim2.new(0.106666803, 0, 1.34375, 0)
-
-
 label2.Size = UDim2.new(0, 220, 0, 27)
-
-
 label2.Font = Enum.Font.SciFi
-
-
 label2.Text = "Click to execute"
-
-
 label2.TextColor3 = Color3.fromRGB(0, 0, 0)
-
-
 label2.TextSize = 20.000
 
-
-
 SilentAim.Name = "SilentAim"
-
-
 SilentAim.Parent = main
-
-
 SilentAim.BackgroundColor3 = Color3.fromRGB(171, 96, 96)
-
-
 SilentAim.BackgroundTransparency = 0.650
-
-
 SilentAim.Position = UDim2.new(0.050938338, 0, 0.366336673, 0)
-
-
 SilentAim.Size = UDim2.new(0, 97, 0, 27)
-
-
 SilentAim.Font = Enum.Font.SciFi
-
-
 SilentAim.Text = "Silent Aim"
-
-
 SilentAim.TextColor3 = Color3.fromRGB(0, 0, 0)
-
-
 SilentAim.TextSize = 18.000
-
-
 SilentAim.MouseButton1Down:connect(function()
-
-
 	-- // Dependencies
-
-
 	local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stefanuk12/ROBLOX/master/Universal/Aiming/Module.lua"))()
-
-
 	Aiming.TeamCheck(false)
 
-
-
 	-- // Services
-
-
 	local Workspace = game:GetService("Workspace")
-
-
 	local Players = game:GetService("Players")
-
-
 	local RunService = game:GetService("RunService")
-
-
 	local UserInputService = game:GetService("UserInputService")
 
-
-
 	-- // Vars
-
-
 	local LocalPlayer = Players.LocalPlayer
-
-
 	local Mouse = LocalPlayer:GetMouse()
-
-
 	local CurrentCamera = Workspace.CurrentCamera
 
-
-
 	local DaHoodSettings = {
-
-
 		SilentAim = true,
-
-
 		AimLock = false,
-
-
 		Prediction = 0.171,
-
-
 		AimLockKeybind = Enum.KeyCode.E
-
-
 	}
-
-
 	getgenv().DaHoodSettings = DaHoodSettings
 
-
-
 	-- // Overwrite to account downed
-
-
 	function Aiming.Check()
-
-
 		-- // Check A
-
-
 		if not (Aiming.Enabled == true and Aiming.Selected ~= LocalPlayer and Aiming.SelectedPart ~= nil) then
-
-
 			return false
-
-
 		end
-
-
 
 		-- // Check if downed
-
-
 		local Character = Aiming.Character(Aiming.Selected)
-
-
 		local KOd = Character:WaitForChild("BodyEffects")["K.O"].Value
-
-
 		local Grabbed = Character:FindFirstChild("GRABBING_CONSTRAINT") ~= nil
 
-
-
 		-- // Check B
-
-
 		if (KOd or Grabbed) then
-
-
 			return false
-
-
 		end
-
-
 
 		-- //
-
-
 		return true
-
-
 	end
 
-
-
 	-- // Hook
-
-
 	local __index
-
-
 	__index = hookmetamethod(game, "__index", function(t, k)
-
-
 		-- // Check if it trying to get our mouse's hit or target and see if we can use it
-
-
 		if (t:IsA("Mouse") and (k == "Hit" or k == "Target") and Aiming.Check()) then
-
-
 			-- // Vars
-
-
 			local SelectedPart = Aiming.SelectedPart
-
-
 
 			-- // Hit/Target
-
-
 			if (DaHoodSettings.SilentAim and (k == "Hit" or k == "Target")) then
-
-
 				-- // Hit to account prediction
-
-
 				local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
 
-
-
 				-- // Return modded val
-
-
 				return (k == "Hit" and Hit or SelectedPart)
-
-
 			end
-
-
 		end
-
-
 
 		-- // Return
-
-
 		return __index(t, k)
-
-
 	end)
-
-
 
 	-- // Aimlock
-
-
 	RunService:BindToRenderStep("AimLock", 0, function()
-
-
 		if (DaHoodSettings.AimLock and Aiming.Check() and UserInputService:IsKeyDown(DaHoodSettings.AimLockKeybind)) then
-
-
 			-- // Vars
-
-
 			local SelectedPart = Aiming.SelectedPart
 
-
-
 			-- // Hit to account prediction
-
-
 			local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
 
-
-
 			-- // Set the camera to face towards the Hit
-
-
 			CurrentCamera.CFrame = CFrame.lookAt(CurrentCamera.CFrame.Position, Hit.Position)
-
-
 		end
-
-
 	end)
-
-
 end)
 
-
-
 FakeMacro.Name = "FakeMacro"
-
-
 FakeMacro.Parent = main
-
-
 FakeMacro.BackgroundColor3 = Color3.fromRGB(171, 96, 96)
-
-
 FakeMacro.BackgroundTransparency = 0.700
-
-
 FakeMacro.Position = UDim2.new(0.050938338, 0, 0.554455519, 0)
-
-
 FakeMacro.Size = UDim2.new(0, 97, 0, 27)
-
-
 FakeMacro.Font = Enum.Font.SciFi
-
-
 FakeMacro.Text = "Speed (t)"
-
-
 FakeMacro.TextColor3 = Color3.fromRGB(0, 0, 0)
-
-
 FakeMacro.TextSize = 18.000
-
-
 FakeMacro.MouseButton1Down:connect(function()
-
-
 	--Settings
-
-
 	local name = 50
-
-
 	local keybind = "t"
-
-
 
 	--Script
 
-
-
 	gv = false
-
-
 	plr = game.Players.LocalPlayer
-
-
 	mouse = plr:GetMouse()
-
-
 	mouse.KeyDown:connect(function(key)
-
-
 		if key == keybind and gv == false then
-
-
 			gv = true
-
-
 			game.Players.LocalPlayer.Character.Humanoid.Name = "Humz"
-
-
 			game.Players.LocalPlayer.Character.Humz.WalkSpeed =155
-
-
 			game.Players.LocalPlayer.Character.Humz.JumpPower = 55
-
-
 		elseif key == keybind and gv == true then
-
-
 			gv = false
-
-
 			game.Players.LocalPlayer.Character.Humz.WalkSpeed = 155
-
-
 			game.Players.LocalPlayer.Character.Humz.JumpPower = 55
-
-
 			game.Players.LocalPlayer.Character.Humz.Name = "Humanoid"
-
-
 		end
-
-
 	end)
-
-
 end)
 
-
-
 esp.Name = "esp"
-
-
 esp.Parent = main
-
-
 esp.BackgroundColor3 = Color3.fromRGB(171, 96, 96)
-
-
 esp.BackgroundTransparency = 0.700
-
-
 esp.Position = UDim2.new(0.050938338, 0, 0.742574275, 0)
-
-
 esp.Size = UDim2.new(0, 97, 0, 27)
-
-
 esp.Font = Enum.Font.SciFi
-
-
 esp.Text = "esp"
-
-
 esp.TextColor3 = Color3.fromRGB(0, 0, 0)
-
-
 esp.TextSize = 18.000
-
-
 esp.MouseButton1Down:connect(function()
-
-
 	--- Tut
 
-
-
 	local esp_settings = { ---- table for esp settings 
-
-
 		textsize = 12,
-
-
 		colour = 255,255,255
-
-
 	}
 
-
-
 	local gui = Instance.new("BillboardGui")
-
-
 	local esp = Instance.new("TextLabel",gui) ---- new instances to make the billboard gui and the textlabel
 
 
 
-
-
 	gui.Name = "Cracked esp"; ---- properties of the esp
-
-
 	gui.ResetOnSpawn = false
-
-
 	gui.AlwaysOnTop = true;
-
-
 	gui.LightInfluence = 0;
-
-
 	gui.Size = UDim2.new(1.75, 0, 1.75, 0);
-
-
 	esp.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
-
-
 	esp.Text = ""
-
-
 	esp.Size = UDim2.new(0.0001, 0.00001, 0.0001, 0.00001);
-
-
 	esp.BorderSizePixel = 4;
-
-
 	esp.BorderColor3 = Color3.new(esp_settings.colour)
-
-
 	esp.BorderSizePixel = 0
-
-
 	esp.Font = "GothamSemibold"
-
-
 	esp.TextSize = esp_settings.textsize
-
-
 	esp.TextColor3 = Color3.fromRGB(esp_settings.colour) -- text colour
 
-
-
 	game:GetService("RunService").RenderStepped:Connect(function() ---- loops faster than a while loop :)
-
-
 		for i,v in pairs (game:GetService("Players"):GetPlayers()) do
-
-
 			if v ~= game:GetService("Players").LocalPlayer and v.Character.Head:FindFirstChild("Cracked esp")==nil  then -- craeting checks for team check, local player etc
-
-
 				esp.Text = "{"..v.Name.."}"
-
-
 				gui:Clone().Parent = v.Character.Head
-
-
 			end
-
-
 		end
-
-
 	end)
-
-
 end)
-
-
 
 Chatlogs.Name = "Chatlogs"
-
-
 Chatlogs.Parent = main
-
-
 Chatlogs.BackgroundColor3 = Color3.fromRGB(171, 96, 96)
-
-
 Chatlogs.BackgroundTransparency = 0.700
-
-
 Chatlogs.Position = UDim2.new(0.353887379, 0, 0.366336673, 0)
-
-
 Chatlogs.Size = UDim2.new(0, 97, 0, 27)
-
-
 Chatlogs.Font = Enum.Font.SciFi
-
-
 Chatlogs.Text = "Chatlogs"
-
-
 Chatlogs.TextColor3 = Color3.fromRGB(0, 0, 0)
-
-
 Chatlogs.TextSize = 18.000
-
-
 Chatlogs.MouseButton1Down:connect(function()
-
-
 	--This script reveals ALL hidden messages in the default chat
-
-
 	--chat "/MagmaHacks" to toggle!
-
-
 	enabled = true
-
-
 	--if true will check your messages too
-
-
 	spyOnMyself = true
-
-
 	--if true will chat the logs publicly (fun, risky)
-
-
 	public = false
-
-
 	--if true will use /me to stand out
-
-
 	publicItalics = true
-
-
 	--customize private logs
-
-
 	privateProperties = {
-
-
 		Color = Color3.fromRGB(0,255,255); 
-
-
 		Font = Enum.Font.SourceSansBold;
-
-
 		TextSize = 18;
-
-
 	}
-
-
 	--////////////////////////////////////////////////////////////////
-
-
 	local StarterGui = game:GetService("StarterGui")
-
-
 	local Players = game:GetService("Players")
-
-
 	local player = Players.LocalPlayer or Players:GetPropertyChangedSignal("LocalPlayer"):Wait() or Players.LocalPlayer
-
-
 	local saymsg = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest")
-
-
 	local getmsg = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("OnMessageDoneFiltering")
-
-
 	local instance = (_G.chatSpyInstance or 0) + 1
-
-
 	_G.chatSpyInstance = instance
 
-
-
 	local function onChatted(p,msg)
-
-
 		if _G.chatSpyInstance == instance then
-
-
 			if p==player and msg:lower():sub(1,4)=="/MagmaHacks" then
-
-
 				enabled = not enabled
-
-
 				wait(0.3)
-
-
 				privateProperties.Text = "{SPY "..(enabled and "EN" or "DIS").."ABLED}"
-
-
 				StarterGui:SetCore("ChatMakeSystemMessage",privateProperties)
-
-
 			elseif enabled and (spyOnMyself==true or p~=player) then
-
-
 				msg = msg:gsub("[\n\r]",''):gsub("\t",' '):gsub("[ ]+",' ')
-
-
 				local hidden = true
-
-
 				local conn = getmsg.OnClientEvent:Connect(function(packet,channel)
-
-
 					if packet.SpeakerUserId==p.UserId and packet.Message==msg:sub(#msg-#packet.Message+1) and (channel=="All" or (channel=="Team" and public==false and Players[packet.FromSpeaker].Team==player.Team)) then
-
-
 						hidden = false
-
-
 					end
-
-
 				end)
-
-
 				wait(1)
-
-
 				conn:Disconnect()
-
-
 				if hidden and enabled then
-
-
 					if public then
-
-
 						saymsg:FireServer((publicItalics and "/me " or '').."{SPY} [".. p.Name .."]: "..msg,"All")
-
-
 					else
-
-
 						privateProperties.Text = "{SPY} [".. p.Name .."]: "..msg
-
-
 						StarterGui:SetCore("ChatMakeSystemMessage",privateProperties)
-
-
 					end
-
-
 				end
-
-
 			end
-
-
 		end
-
-
 	end
-
-
 
 	for _,p in ipairs(Players:GetPlayers()) do
-
-
 		p.Chatted:Connect(function(msg) onChatted(p,msg) end)
-
-
 	end
-
-
 	Players.PlayerAdded:Connect(function(p)
-
-
 		p.Chatted:Connect(function(msg) onChatted(p,msg) end)
-
-
 	end)
-
-
 	privateProperties.Text = "{SPY "..(enabled and "EN" or "DIS").."ABLED}"
-
-
 	StarterGui:SetCore("ChatMakeSystemMessage",privateProperties)
-
-
 	if not player.PlayerGui:FindFirstChild("Chat") then wait(3) end
-
-
 	local chatFrame = player.PlayerGui.Chat.Frame
-
-
 	chatFrame.ChatChannelParentFrame.Visible = true
-
-
 	chatFrame.ChatBarParentFrame.Position = chatFrame.ChatChannelParentFrame.Position+UDim2.new(UDim.new(),chatFrame.ChatChannelParentFrame.Size.Y)
-
-
 end)
-
-
 
 Raycodex.Name = "Raycodex"
-
-
 Raycodex.Parent = main
-
-
 Raycodex.BackgroundColor3 = Color3.fromRGB(171, 96, 96)
-
-
 Raycodex.BackgroundTransparency = 0.700
-
-
 Raycodex.Position = UDim2.new(0.353887409, 0, 0.554455519, 0)
-
-
 Raycodex.Size = UDim2.new(0, 97, 0, 27)
-
-
 Raycodex.Font = Enum.Font.SciFi
-
-
 Raycodex.Text = "Raycodex "
-
-
 Raycodex.TextColor3 = Color3.fromRGB(0, 0, 0)
-
-
 Raycodex.TextSize = 18.000
-
-
 Raycodex.MouseButton1Down:connect(function()
-
-
 	loadstring(game:GetObjects("rbxassetid://5812737894")[1].Source)()
-
-
 end)
-
-
 
 Swagmode.Name = "Swagmode"
-
-
 Swagmode.Parent = main
-
-
 Swagmode.BackgroundColor3 = Color3.fromRGB(171, 96, 96)
-
-
 Swagmode.BackgroundTransparency = 0.700
-
-
 Swagmode.Position = UDim2.new(0.353887379, 0, 0.742574275, 0)
-
-
 Swagmode.Size = UDim2.new(0, 97, 0, 27)
-
-
 Swagmode.Font = Enum.Font.SciFi
-
-
 Swagmode.Text = "Swagmode"
-
-
 Swagmode.TextColor3 = Color3.fromRGB(0, 0, 0)
-
-
 Swagmode.TextSize = 18.000
-
-
 Swagmode.MouseButton1Down:connect(function()
-
-
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/lerkermer/lua-projects/master/SwagModeV002'))()
-
-
 end)
 
-
-
 label3.Name = "label3"
-
-
 label3.Parent = main
-
-
 label3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-
-
 label3.BackgroundTransparency = 1.000
-
-
 label3.Position = UDim2.new(0.678284168, 0, 0.212871283, 0)
-
-
 label3.Size = UDim2.new(0, 114, 0, 147)
-
-
 label3.Font = Enum.Font.SourceSans
-
-
 label3.Text = "Note: Do not execute Silent Aim and Swagmode together ; it will mess up your game"
-
-
 label3.TextColor3 = Color3.fromRGB(0, 0, 0)
-
-
 label3.TextScaled = true
-
-
 label3.TextSize = 1.000
-
-
 label3.TextWrapped = true
 
-
-
 Frame_3.Parent = label3
-
-
 Frame_3.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-
-
 Frame_3.BackgroundTransparency = 0.600
-
-
 Frame_3.Size = UDim2.new(0, 114, 0, 147)
