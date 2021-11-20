@@ -95,7 +95,7 @@ SilentAim.MouseButton1Down:connect(function()
 	local DaHoodSettings = {
 		SilentAim = true,
 		AimLock = false,
-		Prediction = 0.171,
+		Prediction = 0.179,
 		AimLockKeybind = Enum.KeyCode.E
 	}
 	getgenv().DaHoodSettings = DaHoodSettings
